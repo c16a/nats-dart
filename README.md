@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.com/munukutla/nats-dart.svg?branch=master)](https://travis-ci.com/munukutla/nats-dart)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmunukutla%2Fnats-dart.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmunukutla%2Fnats-dart?ref=badge_shield)
 
 # nats-dart
 NATS client to usage in Dart CLI, Web and Flutter projects
@@ -57,3 +58,6 @@ Not yet. The API is not yet finalised NATS protocol is not fully supported.
 
 ### When will this be ready?
 Soon I guess. Feel free to pitch in and it'll be ready sooner.
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmunukutla%2Fnats-dart.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmunukutla%2Fnats-dart?ref=badge_large)
