@@ -8,5 +8,6 @@ void main() async {
     print("Received message ${message.payload} on ${message.subject}");
   });
 
-  var sid = client.subscribe(subject: "foo");
+  var sid = client.subscribe("foo");
+  print(sid);
 }

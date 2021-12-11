@@ -1,6 +1,4 @@
 import 'package:nats/nats.dart';
-import 'package:uuid/uuid.dart';
-import 'package:tuple/tuple.dart';
 
 import "dart:convert";
 
@@ -28,12 +26,9 @@ class MessageBuffers {
   }
 
   // SUB <subject> [queue group] <sid>
-  static Tuple2<String, String> subscribePacket(
-      String subject, String? queueGroup) {
+  static String subscribePacket(
+      String subject, String? queueGroup, String sid) {
     String messageBuffer;
-
-    var uuid = Uuid();
-    var sid = uuid.v4();
 
     if (queueGroup != null) {
       messageBuffer = "SUB $subject $queueGroup $sid\r\n";
@@ -41,7 +36,7 @@ class MessageBuffers {
       messageBuffer = "SUB $subject $sid\r\n";
     }
 
-    return Tuple2(messageBuffer, sid);
+    return messageBuffer;
   }
 
   // UNSUB <sid> [max_msgs]

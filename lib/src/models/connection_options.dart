@@ -28,18 +28,18 @@ class ConnectionOpts {
       this.jwt);
 
   Map<String, dynamic> toJson() => {
-        "verbose": this.verbose,
-        "pedantic": this.pedantic,
-        "tls_required": this.tlsRequired,
-        "auth_token": this.authToken,
-        "user": this.user,
-        "pass": this.pass,
-        "name": this.name,
-        "lang": this.lang,
-        "version": this.version,
-        "protocol": this.protocol,
-        "echo": this.echo,
-        "sig": this.sig,
-        "jwt": this.jwt
+        "verbose": verbose,
+        "pedantic": pedantic,
+        "tls_required": tlsRequired,
+        "auth_token": authToken,
+        "user": user,
+        "pass": pass,
+        "name": name,
+        "lang": lang,
+        "version": version,
+        "protocol": protocol,
+        "echo": echo,
+        "sig": sig,
+        "jwt": jwt
       };
 }

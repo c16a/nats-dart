@@ -1,6 +1,5 @@
 import 'dart:typed_data';
 import 'package:nats/nats.dart';
-import 'package:nats/src/buffer.dart';
 import 'package:nats/src/protocol_sender.dart';
 import 'dart:io';
 import 'dart:async';
@@ -20,10 +19,10 @@ class NatsClient {
   NatsClient({required this.servers, this.opts});
 
   Future<void> connect() async {
-    await connectToServer(currentServerIndex);
+    await _connectToServer(currentServerIndex);
   }
 
-  Future<void> connectToServer(int index) async {
+  Future<void> _connectToServer(int index) async {
     var uri = Uri.parse(servers[index]);
     _currentSocket = await Socket.connect(uri.host, uri.port);
     _startSocketListener();
@@ -47,7 +46,7 @@ class NatsClient {
   }
 
   void _startSocketSender() {
-    _sender = ProtocolSender(socket: _currentSocket);
+    _sender = ProtocolSender(_currentSocket);
   }
 
   void _dataHandler(Uint8List data) {
@@ -63,12 +62,12 @@ class NatsClient {
 
   Future<void> _handleServerConnectionError() async {
     _cycleToNextServer();
-    await connectToServer(currentServerIndex);
+    await _connectToServer(currentServerIndex);
   }
 
   Future<void> _handleServerGoneError() async {
     _cycleToNextServer();
-    await connectToServer(currentServerIndex);
+    await _connectToServer(currentServerIndex);
   }
 
   void _cycleToNextServer() {
@@ -80,22 +79,12 @@ class NatsClient {
   ///
   /// Requires the [subject] and [data] parameters,
   /// and optionally a [replySubject] to receive the replies on.
-  void publish({
-    required String subject,
-    String? replySubject,
-    required String data,
-  }) =>
+  void publish(String subject, String data, {String? replySubject}) =>
       _sender?.sendPublish(subject, replySubject, data, null);
 
-  String? subscribe(
-          {required String subject,
-          String? queueGroup,
-          CompletionHandler? completionHandler}) =>
-      _sender?.sendSubscribe(subject, queueGroup, completionHandler);
+  String? subscribe(String subject, {String? queueGroup}) =>
+      _sender?.sendSubscribe(subject, queueGroup);
 
-  void unsubscribe(
-          {required String sid,
-          int? waitUntilMessages,
-          CompletionHandler? completionHandler}) =>
-      _sender?.sendUnsubscribe(sid, waitUntilMessages, completionHandler);
+  void unsubscribe(String sid, {int? waitUntilMessages}) =>
+      _sender?.sendUnsubscribe(sid, waitUntilMessages);
 }

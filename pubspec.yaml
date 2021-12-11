@@ -6,9 +6,6 @@ environment:
 
 dependencies:
   test: "1.19.5"
-  logging: "1.0.2"
-  mockito: "5.0.16"
-  mocktail: "0.2.0"
   uuid: "3.0.5"
-  tuple: "2.0.0"
-  benchmark: "0.3.0"
+dev_dependencies: 
+  lints: ^1.0.1
