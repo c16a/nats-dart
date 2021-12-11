@@ -1,5 +1,5 @@
 class Subscription {
-  String subscriptionId;
-  String subject;
-  String queueGroup;
+  String? subscriptionId;
+  String? subject;
+  String? queueGroup;
 }

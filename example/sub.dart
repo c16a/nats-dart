@@ -1,16 +1,12 @@
 import 'package:nats/nats.dart';
-import 'package:logging/logging.dart';
 
 void main() async {
-  var client = NatsClient("localhost", 4222);
+  var client = NatsClient(servers: ["nats://localhost:4222"], opts: null);
+  await client.connect();
 
-  await client.connect(
-      connectionOptions: ConnectionOptions()..protocol = 1,
-      onClusterupdate: (serverInfo) {
-        //print("Got new update: ${serverInfo.serverUrls}");
-      });
-
-  client.subscribe("sub-1", "foo.*").listen((msg) {
-    print("Got message: ${msg.payload}");
+  client.setMessageHandler((message) {
+    print("Received message ${message.payload} on ${message.subject}");
   });
+
+  var sid = client.subscribe(subject: "foo");
 }

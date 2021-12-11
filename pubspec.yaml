@@ -1,11 +1,14 @@
 name: nats
-version: 0.1.0
+version: 1.0.0
 description: NATS client for Dart language
-author: Chaitanya Munukutla <chaitanya.m61292@gmail.com>
 environment:
-  sdk: '>=2.0.0 <3.0.0'
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
-  test: any
-  logging: any
-  mockito: any
+  test: "1.19.5"
+  logging: "1.0.2"
+  mockito: "5.0.16"
+  mocktail: "0.2.0"
+  uuid: "3.0.5"
+  tuple: "2.0.0"
+  benchmark: "0.3.0"
